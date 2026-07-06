@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="checkout-container">
+    <h1><i class="fas fa-credit-card"></i> Checkout</h1>
+
+    <div class="checkout-layout">
+        <div class="checkout-items">
+            <h2>Order Summary</h2>
+            {% for item in items %}
+            <div class="checkout-item">
+                <span>{{ item.name }} x{{ item.quantity }}</span>
+                <span>₹{{ "%.2f"|format(item.price * item.quantity) }}</span>
+            </div>
+            {% endfor %}
+            <div class="checkout-total">
+                <strong>Total</strong>
+                <strong>₹{{ "%.2f"|format(total) }}</strong>
+            </div>
+        </div>
+
+        <div class="checkout-form">
+            <h2>Shipping Details</h2>
+            <form method="POST" id="checkout-form">
+                <div class="form-group">
+                    <label for="address"><i class="fas fa-map-marker-alt"></i> Shipping Address</label>
+                    <textarea id="address" name="address" rows="3" placeholder="Enter your full address" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="pincode"><i class="fas fa-map-pin"></i> Pincode</label>
+                    <input type="text" id="pincode" name="pincode" placeholder="Enter 6-digit pincode" maxlength="6" pattern="[0-9]{6}" required>
+                </div>
+
+                <h2 style="margin-top:25px;font-size:1.1rem"><i class="fas fa-wallet"></i> Payment Method</h2>
+
+                <div class="payment-options">
+                    <label class="payment-option">
+                        <input type="radio" name="payment_method" value="UPI" checked onchange="toggleUPI()">
+                        <div class="payment-option-content">
+                            <i class="fas fa-mobile-alt"></i>
+                            <span>UPI (GPay / PhonePe / Paytm)</span>
+                        </div>
+                    </label>
+                    <div class="upi-details" id="upi-details">
+                        <div class="upi-id-box">
+                            <i class="fas fa-qrcode"></i>
+                            <div>
+                                <p style="color:#aaa;font-size:0.85rem;margin-bottom:4px">Pay to UPI ID:</p>
+                                <p style="color:#D4AF37;font-size:1.2rem;font-weight:700">darkfashions@upi</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Enter UPI Transaction ID (optional)</label>
+                            <input type="text" name="upi_txn_id" placeholder="e.g. UPI123456789">
+                        </div>
+                    </div>
+
+                    <label class="payment-option">
+                        <input type="radio" name="payment_method" value="COD" onchange="toggleUPI()">
+                        <div class="payment-option-content">
+                            <i class="fas fa-money-bill-wave"></i>
+                            <span>Cash on Delivery</span>
+                        </div>
+                    </label>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block" style="margin-top:20px;padding:16px;font-size:1.05rem">
+                    <i class="fas fa-check"></i> Place Order
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<style>
+.payment-options { display:flex;flex-direction:column;gap:10px;margin-top:10px }
+.payment-option { display:flex;align-items:center;gap:12px;background:#1a1a1a;border:1px solid #333;border-radius:10px;padding:14px 16px;cursor:pointer;transition:all 0.2s }
+.payment-option:has(input:checked) { border-color:#D4AF37;background:#1a1a0a }
+.payment-option input { accent-color:#D4AF37;width:18px;height:18px }
+.payment-option-content { display:flex;align-items:center;gap:12px;font-size:0.95rem;color:#fff;cursor:pointer }
+.payment-option-content i { font-size:1.3rem;color:#D4AF37;width:24px;text-align:center }
+.upi-details { background:#111;border:1px solid #333;border-radius:10px;padding:16px;margin-top:5px }
+.upi-id-box { display:flex;align-items:center;gap:15px;margin-bottom:15px;background:#1a1a1a;padding:14px;border-radius:8px;border:1px dashed #D4AF37 }
+.upi-id-box i { font-size:2rem;color:#D4AF37 }
+</style>
+
+<script>
+function toggleUPI() {
+    const upi = document.querySelector('input[name="payment_method"][value="UPI"]');
+    document.getElementById('upi-details').style.display = upi.checked ? 'block' : 'none';
+}
+toggleUPI();
+</script>
+{% endblock %}

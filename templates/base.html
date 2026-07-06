@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Fashions - Premium Clothing</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}?v=2">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="{{ url_for('shop') }}" class="nav-brand">
+                <img src="{{ url_for('static', filename='logo.png') }}" alt="Dark Fashions" class="nav-logo">
+            </a>
+            <div class="nav-links">
+                {% if session.user_id %}
+                    <a href="{{ url_for('shop') }}"><i class="fas fa-store"></i> Shop</a>
+                    <a href="{{ url_for('cart') }}"><i class="fas fa-shopping-cart"></i> Cart</a>
+                    <a href="{{ url_for('orders') }}"><i class="fas fa-box"></i> Orders</a>
+                    <span class="nav-user"><i class="fas fa-user"></i> {{ session.user_name }}</span>
+                    <a href="{{ url_for('admin') }}"><i class="fas fa-cog"></i> Admin</a>
+                    <a href="{{ url_for('logout') }}" class="btn-logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <div class="flash-container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash flash-{{ category }}">
+                        <span>{{ message }}</span>
+                        <button class="flash-close" onclick="this.parentElement.remove()">&times;</button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+
+    <main class="main-content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2026 Dark Fashions. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        setTimeout(() => {
+            document.querySelectorAll('.flash').forEach(el => el.remove());
+        }, 5000);
+    </script>
+</body>
+</html>

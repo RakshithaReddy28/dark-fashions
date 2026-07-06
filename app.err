@@ -1,0 +1,142 @@
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.4:5000
+Press CTRL+C to quit
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 704-282-902
+127.0.0.1 - - [25/Jun/2026 07:40:49] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [25/Jun/2026 07:40:49] "GET /shop HTTP/1.1" 302 -
+127.0.0.1 - - [25/Jun/2026 07:40:49] "GET /login HTTP/1.1" 200 -
+127.0.0.1 - - [25/Jun/2026 07:40:50] "GET /static/style.css HTTP/1.1" 200 -
+127.0.0.1 - - [25/Jun/2026 07:40:50] "GET /static/logo.png HTTP/1.1" 200 -
+127.0.0.1 - - [25/Jun/2026 07:40:50] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [25/Jun/2026 07:46:24] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [25/Jun/2026 07:46:24] "GET /shop HTTP/1.1" 302 -
+127.0.0.1 - - [25/Jun/2026 07:46:24] "GET /login HTTP/1.1" 200 -
+127.0.0.1 - - [25/Jun/2026 07:46:24] "GET /static/style.css HTTP/1.1" 200 -
+127.0.0.1 - - [25/Jun/2026 07:46:24] "GET /static/logo.png HTTP/1.1" 200 -
+127.0.0.1 - - [25/Jun/2026 07:46:26] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [25/Jun/2026 07:46:30] "POST /login HTTP/1.1" 200 -
+127.0.0.1 - - [25/Jun/2026 07:46:30] "GET /static/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [25/Jun/2026 07:46:30] "GET /static/logo.png HTTP/1.1" 304 -
+127.0.0.1 - - [25/Jun/2026 07:46:32] "GET /register HTTP/1.1" 200 -
+127.0.0.1 - - [25/Jun/2026 07:46:32] "GET /static/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [25/Jun/2026 07:46:32] "GET /static/logo.png HTTP/1.1" 304 -
+127.0.0.1 - - [25/Jun/2026 07:46:44] "POST /register HTTP/1.1" 302 -
+127.0.0.1 - - [25/Jun/2026 07:46:44] "GET /login HTTP/1.1" 200 -
+127.0.0.1 - - [25/Jun/2026 07:46:44] "GET /static/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [25/Jun/2026 07:46:44] "GET /static/logo.png HTTP/1.1" 304 -
+127.0.0.1 - - [25/Jun/2026 07:46:47] "POST /login HTTP/1.1" 302 -
+127.0.0.1 - - [25/Jun/2026 07:46:47] "GET /shop HTTP/1.1" 200 -
+127.0.0.1 - - [25/Jun/2026 07:46:47] "GET /static/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [25/Jun/2026 07:46:47] "GET /static/logo.png HTTP/1.1" 304 -
+127.0.0.1 - - [25/Jun/2026 07:46:53] "POST /add-to-cart HTTP/1.1" 302 -
+127.0.0.1 - - [25/Jun/2026 07:46:54] "GET /shop HTTP/1.1" 200 -
+127.0.0.1 - - [25/Jun/2026 07:46:54] "GET /static/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [25/Jun/2026 07:46:54] "GET /static/logo.png HTTP/1.1" 304 -
+127.0.0.1 - - [25/Jun/2026 07:46:58] "GET /cart HTTP/1.1" 200 -
+127.0.0.1 - - [25/Jun/2026 07:46:58] "GET /static/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [25/Jun/2026 07:46:58] "GET /static/logo.png HTTP/1.1" 304 -
+127.0.0.1 - - [25/Jun/2026 07:47:01] "GET /checkout HTTP/1.1" 200 -
+127.0.0.1 - - [25/Jun/2026 07:47:01] "GET /static/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [25/Jun/2026 07:47:01] "GET /static/logo.png HTTP/1.1" 304 -
+127.0.0.1 - - [25/Jun/2026 07:48:41] "GET /shop HTTP/1.1" 200 -
+127.0.0.1 - - [25/Jun/2026 07:48:41] "GET /static/style.css HTTP/1.1" 200 -
+127.0.0.1 - - [25/Jun/2026 07:48:41] "GET /static/logo.png HTTP/1.1" 304 -
+127.0.0.1 - - [25/Jun/2026 07:48:48] "GET /shop HTTP/1.1" 200 -
+127.0.0.1 - - [25/Jun/2026 07:48:48] "GET /static/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [25/Jun/2026 07:48:48] "GET /static/logo.png HTTP/1.1" 304 -
+127.0.0.1 - - [25/Jun/2026 07:48:57] "GET /logout HTTP/1.1" 302 -
+127.0.0.1 - - [25/Jun/2026 07:48:57] "GET /login HTTP/1.1" 200 -
+127.0.0.1 - - [25/Jun/2026 07:48:57] "GET /static/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [25/Jun/2026 07:48:57] "GET /static/logo.png HTTP/1.1" 304 -
+127.0.0.1 - - [25/Jun/2026 07:49:36] "GET /login HTTP/1.1" 200 -
+127.0.0.1 - - [25/Jun/2026 07:49:36] "GET /static/style.css HTTP/1.1" 200 -
+127.0.0.1 - - [25/Jun/2026 07:49:36] "GET /static/logo.png HTTP/1.1" 304 -
+127.0.0.1 - - [25/Jun/2026 07:49:38] "GET /login HTTP/1.1" 200 -
+127.0.0.1 - - [25/Jun/2026 07:49:39] "GET /static/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [25/Jun/2026 07:49:39] "GET /static/logo.png HTTP/1.1" 304 -
+127.0.0.1 - - [25/Jun/2026 07:49:41] "POST /login HTTP/1.1" 302 -
+127.0.0.1 - - [25/Jun/2026 07:49:42] "GET /shop HTTP/1.1" 200 -
+127.0.0.1 - - [25/Jun/2026 07:49:42] "GET /static/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [25/Jun/2026 07:49:42] "GET /static/logo.png HTTP/1.1" 304 -
+127.0.0.1 - - [25/Jun/2026 07:50:58] "GET /shop HTTP/1.1" 200 -
+127.0.0.1 - - [25/Jun/2026 07:50:58] "GET /static/style.css?v=2 HTTP/1.1" 200 -
+127.0.0.1 - - [25/Jun/2026 07:50:58] "GET /static/logo.png HTTP/1.1" 200 -
+127.0.0.1 - - [25/Jun/2026 07:50:59] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [25/Jun/2026 07:51:02] "GET /shop HTTP/1.1" 200 -
+127.0.0.1 - - [25/Jun/2026 07:51:02] "GET /static/style.css?v=2 HTTP/1.1" 304 -
+127.0.0.1 - - [25/Jun/2026 07:51:02] "GET /static/logo.png HTTP/1.1" 304 -
+127.0.0.1 - - [25/Jun/2026 07:51:58] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [25/Jun/2026 07:51:58] "GET /shop HTTP/1.1" 200 -
+127.0.0.1 - - [25/Jun/2026 07:51:58] "GET /static/style.css?v=2 HTTP/1.1" 200 -
+127.0.0.1 - - [25/Jun/2026 07:51:58] "GET /static/logo.png HTTP/1.1" 304 -
+127.0.0.1 - - [25/Jun/2026 07:52:29] "GET /orders HTTP/1.1" 200 -
+127.0.0.1 - - [25/Jun/2026 07:52:29] "GET /static/style.css?v=2 HTTP/1.1" 304 -
+127.0.0.1 - - [25/Jun/2026 07:52:29] "GET /static/logo.png HTTP/1.1" 304 -
+127.0.0.1 - - [25/Jun/2026 07:52:32] "GET /cart HTTP/1.1" 200 -
+127.0.0.1 - - [25/Jun/2026 07:52:32] "GET /static/style.css?v=2 HTTP/1.1" 304 -
+127.0.0.1 - - [25/Jun/2026 07:52:32] "GET /static/logo.png HTTP/1.1" 304 -
+ * Detected change in 'C:\\Users\\raksh\\Desktop\\Dark Fashions2\\database.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 704-282-902
+127.0.0.1 - - [25/Jun/2026 07:53:59] "GET /cart HTTP/1.1" 200 -
+127.0.0.1 - - [25/Jun/2026 07:53:59] "GET /static/logo.png HTTP/1.1" 304 -
+127.0.0.1 - - [25/Jun/2026 07:53:59] "GET /static/style.css?v=2 HTTP/1.1" 304 -
+127.0.0.1 - - [25/Jun/2026 07:54:05] "GET /cart HTTP/1.1" 200 -
+127.0.0.1 - - [25/Jun/2026 07:54:05] "GET /static/style.css?v=2 HTTP/1.1" 304 -
+127.0.0.1 - - [25/Jun/2026 07:54:05] "GET /static/logo.png HTTP/1.1" 304 -
+127.0.0.1 - - [25/Jun/2026 07:54:06] "GET /cart HTTP/1.1" 200 -
+127.0.0.1 - - [25/Jun/2026 07:54:06] "GET /static/style.css?v=2 HTTP/1.1" 304 -
+127.0.0.1 - - [25/Jun/2026 07:54:06] "GET /static/logo.png HTTP/1.1" 304 -
+127.0.0.1 - - [25/Jun/2026 07:54:06] "GET /cart HTTP/1.1" 200 -
+127.0.0.1 - - [25/Jun/2026 07:54:06] "GET /static/style.css?v=2 HTTP/1.1" 304 -
+127.0.0.1 - - [25/Jun/2026 07:54:06] "GET /static/logo.png HTTP/1.1" 304 -
+127.0.0.1 - - [25/Jun/2026 07:54:11] "GET /shop HTTP/1.1" 200 -
+127.0.0.1 - - [25/Jun/2026 07:54:11] "GET /static/style.css?v=2 HTTP/1.1" 304 -
+127.0.0.1 - - [25/Jun/2026 07:54:11] "GET /static/logo.png HTTP/1.1" 304 -
+ * Detected change in 'C:\\Users\\raksh\\Desktop\\Dark Fashions2\\app.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 704-282-902
+ * Detected change in 'C:\\Users\\raksh\\Desktop\\Dark Fashions2\\app.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 704-282-902
+127.0.0.1 - - [25/Jun/2026 07:56:36] "GET /shop HTTP/1.1" 200 -
+127.0.0.1 - - [25/Jun/2026 07:56:36] "GET /static/style.css?v=2 HTTP/1.1" 304 -
+127.0.0.1 - - [25/Jun/2026 07:56:36] "GET /static/logo.png HTTP/1.1" 304 -
+127.0.0.1 - - [25/Jun/2026 07:56:38] "GET /shop HTTP/1.1" 200 -
+127.0.0.1 - - [25/Jun/2026 07:56:38] "GET /static/style.css?v=2 HTTP/1.1" 304 -
+127.0.0.1 - - [25/Jun/2026 07:56:38] "GET /static/logo.png HTTP/1.1" 304 -
+127.0.0.1 - - [25/Jun/2026 07:56:40] "GET /shop HTTP/1.1" 200 -
+127.0.0.1 - - [25/Jun/2026 07:56:40] "GET /static/style.css?v=2 HTTP/1.1" 304 -
+127.0.0.1 - - [25/Jun/2026 07:56:40] "GET /static/logo.png HTTP/1.1" 304 -
+127.0.0.1 - - [25/Jun/2026 07:56:40] "GET /shop HTTP/1.1" 200 -
+127.0.0.1 - - [25/Jun/2026 07:56:40] "GET /static/style.css?v=2 HTTP/1.1" 304 -
+127.0.0.1 - - [25/Jun/2026 07:56:40] "GET /static/logo.png HTTP/1.1" 304 -
+127.0.0.1 - - [25/Jun/2026 07:56:41] "GET /shop HTTP/1.1" 200 -
+127.0.0.1 - - [25/Jun/2026 07:56:41] "GET /static/style.css?v=2 HTTP/1.1" 304 -
+127.0.0.1 - - [25/Jun/2026 07:56:41] "GET /static/logo.png HTTP/1.1" 304 -
+127.0.0.1 - - [25/Jun/2026 07:56:41] "GET /shop HTTP/1.1" 200 -
+127.0.0.1 - - [25/Jun/2026 07:56:41] "GET /static/style.css?v=2 HTTP/1.1" 304 -
+127.0.0.1 - - [25/Jun/2026 07:56:41] "GET /static/logo.png HTTP/1.1" 304 -
+127.0.0.1 - - [25/Jun/2026 07:56:56] "GET /admin/login HTTP/1.1" 200 -
+127.0.0.1 - - [25/Jun/2026 07:56:56] "GET /static/style.css?v=2 HTTP/1.1" 304 -
+127.0.0.1 - - [25/Jun/2026 07:56:56] "GET /static/logo.png HTTP/1.1" 304 -
+127.0.0.1 - - [25/Jun/2026 07:57:09] "POST /admin/login HTTP/1.1" 200 -
+127.0.0.1 - - [25/Jun/2026 07:57:09] "GET /static/style.css?v=2 HTTP/1.1" 304 -
+127.0.0.1 - - [25/Jun/2026 07:57:09] "GET /static/logo.png HTTP/1.1" 304 -
+127.0.0.1 - - [25/Jun/2026 07:57:13] "POST /admin/login HTTP/1.1" 200 -
+127.0.0.1 - - [25/Jun/2026 07:57:13] "GET /static/style.css?v=2 HTTP/1.1" 304 -
+127.0.0.1 - - [25/Jun/2026 07:57:13] "GET /static/logo.png HTTP/1.1" 304 -
+127.0.0.1 - - [25/Jun/2026 07:57:28] "POST /admin/login HTTP/1.1" 302 -
+127.0.0.1 - - [25/Jun/2026 07:57:28] "GET /admin HTTP/1.1" 200 -
+127.0.0.1 - - [25/Jun/2026 07:57:28] "GET /static/style.css?v=2 HTTP/1.1" 304 -
+127.0.0.1 - - [25/Jun/2026 07:57:28] "GET /static/logo.png HTTP/1.1" 304 -
+127.0.0.1 - - [25/Jun/2026 07:57:40] "GET /admin/edit/1 HTTP/1.1" 200 -
+127.0.0.1 - - [25/Jun/2026 07:57:40] "GET /static/style.css?v=2 HTTP/1.1" 304 -
+127.0.0.1 - - [25/Jun/2026 07:57:40] "GET /static/logo.png HTTP/1.1" 304 -

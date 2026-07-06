@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="shop-header">
+    <h1><i class="fas fa-store"></i> Our Collection</h1>
+    <p>Premium streetwear for the bold</p>
+</div>
+
+<div class="products-grid">
+    {% for product in products %}
+    <div class="product-card">
+        <a href="{{ url_for('product_detail', product_id=product.id) }}" class="product-link">
+            <div class="product-image">
+                <img src="{{ product.image_url }}" alt="{{ product.name }}">
+                <span class="product-category">{{ product.category }}</span>
+            </div>
+            <div class="product-info">
+                <h3>{{ product.name }}</h3>
+                <p class="product-description">{{ product.description }}</p>
+                <div class="product-bottom">
+                    <span class="product-price">₹{{ "%.2f"|format(product.price) }}</span>
+                </div>
+            </div>
+        </a>
+        <div class="add-to-cart-form" style="padding:0 16px 16px">
+            <input type="hidden" name="product_id" value="{{ product.id }}">
+            <input type="number" value="1" min="1" class="qty-input">
+            <button class="btn btn-cart add-btn" data-product-id="{{ product.id }}"><i class="fas fa-cart-plus"></i> Add</button>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<script>
+document.querySelectorAll('.add-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        const card = this.closest('.add-to-cart-form');
+        const productId = this.dataset.productId;
+        const quantity = card.querySelector('.qty-input').value;
+        fetch('{{ url_for("add_to_cart_ajax") }}', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+            body: 'product_id=' + productId + '&quantity=' + quantity
+        }).then(r => r.json()).then(data => {
+            if (data.success) {
+                const toast = document.createElement('div');
+                toast.className = 'toast-notification';
+                toast.innerHTML = '<i class="fas fa-check-circle"></i> Added to cart!';
+                document.body.appendChild(toast);
+                setTimeout(() => toast.remove(), 2000);
+            }
+        });
+    });
+});
+</script>
+
+
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="confirmation-container">
+    <div class="confirmation-card">
+        <div class="confirmation-icon">
+            <i class="fas fa-check-circle"></i>
+        </div>
+        <h1>Order Placed Successfully!</h1>
+        <p class="confirmation-sub">Thank you for shopping with Dark Fashions</p>
+
+        <div class="confirmation-details">
+            <div class="confirmation-row">
+                <span>Order Number</span>
+                <span class="confirmation-value">#{{ order.id }}</span>
+            </div>
+            <div class="confirmation-row">
+                <span>Date</span>
+                <span class="confirmation-value">{{ order.created_at[:10] }}</span>
+            </div>
+            <div class="confirmation-row">
+                <span>Payment</span>
+                <span class="confirmation-value">{{ order.payment_method }}</span>
+            </div>
+            <div class="confirmation-row">
+                <span>Total Amount</span>
+                <span class="confirmation-value confirmation-total">₹{{ "%.0f"|format(order.total_amount) }}</span>
+            </div>
+        </div>
+
+        <div class="confirmation-address">
+            <h3><i class="fas fa-map-marker-alt"></i> Shipping Address</h3>
+            <p>{{ order.shipping_address }}{% if order.pincode %} - {{ order.pincode }}{% endif %}</p>
+        </div>
+
+        <div class="confirmation-items">
+            <h3><i class="fas fa-box"></i> Items Ordered</h3>
+            {% for item in items %}
+            <div class="confirmation-item">
+                <span>{{ item.name }} x{{ item.quantity }}</span>
+                <span>₹{{ "%.0f"|format(item.price * item.quantity) }}</span>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="confirmation-actions">
+            <a href="{{ url_for('orders') }}" class="btn btn-primary"><i class="fas fa-box"></i> View All Orders</a>
+            <a href="{{ url_for('shop') }}" class="btn" style="background:#222;color:#D4AF37;border:1px solid #D4AF37"><i class="fas fa-store"></i> Continue Shopping</a>
+        </div>
+    </div>
+</div>
+
+<style>
+.confirmation-container { display:flex;justify-content:center;padding:20px 0 }
+.confirmation-card { background:#111;border:1px solid #D4AF37;border-radius:16px;padding:40px;max-width:550px;width:100%;text-align:center }
+.confirmation-icon i { font-size:4rem;color:#2ecc71;margin-bottom:15px }
+.confirmation-card h1 { font-size:1.8rem;color:#fff;margin-bottom:5px }
+.confirmation-sub { color:#666;font-size:0.95rem;margin-bottom:30px }
+.confirmation-details { background:#1a1a1a;border-radius:10px;padding:5px 20px;margin-bottom:20px;text-align:left }
+.confirmation-row { display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid #222;font-size:0.95rem }
+.confirmation-row:last-child { border-bottom:none }
+.confirmation-row span:first-child { color:#888 }
+.confirmation-value { color:#fff;font-weight:600 }
+.confirmation-total { color:#D4AF37;font-size:1.1rem;font-weight:800 }
+.confirmation-address { background:#1a1a1a;border-radius:10px;padding:16px 20px;margin-bottom:20px;text-align:left }
+.confirmation-address h3 { font-size:0.95rem;color:#D4AF37;margin-bottom:8px }
+.confirmation-address h3 i { margin-right:6px }
+.confirmation-address p { color:#aaa;font-size:0.9rem;line-height:1.5 }
+.confirmation-items { background:#1a1a1a;border-radius:10px;padding:16px 20px;margin-bottom:25px;text-align:left }
+.confirmation-items h3 { font-size:0.95rem;color:#D4AF37;margin-bottom:10px }
+.confirmation-items h3 i { margin-right:6px }
+.confirmation-item { display:flex;justify-content:space-between;padding:8px 0;font-size:0.9rem;color:#ccc;border-bottom:1px solid #222 }
+.confirmation-item:last-child { border-bottom:none }
+.confirmation-actions { display:flex;gap:12px;justify-content:center;flex-wrap:wrap }
+</style>
+{% endblock %}

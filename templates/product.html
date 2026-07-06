@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="product-detail">
+    <a href="{{ url_for('shop') }}" class="back-link"><i class="fas fa-arrow-left"></i> Back to Shop</a>
+
+    <div class="product-detail-layout">
+        <div class="product-detail-image">
+            <img src="{{ product.image_url }}" alt="{{ product.name }}">
+        </div>
+        <div class="product-detail-info">
+            <span class="product-category" style="position:static;display:inline-block;margin-bottom:12px">{{ product.category }}</span>
+            <h1>{{ product.name }}</h1>
+            <p class="product-detail-price">₹{{ "%.0f"|format(product.price) }}</p>
+            <p class="product-detail-desc">{{ product.description }}</p>
+
+            <div class="product-detail-actions">
+                <div class="add-to-cart-form">
+                    <input type="hidden" name="product_id" value="{{ product.id }}">
+                    <label style="color:#aaa;font-size:0.9rem">Qty:</label>
+                    <input type="number" value="1" min="1" class="qty-input" style="width:60px">
+                    <button class="btn btn-primary detail-add-btn" data-product-id="{{ product.id }}" style="flex:1;padding:14px"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-detail-meta">
+                <p><i class="fas fa-tag"></i> Free shipping on orders above ₹999</p>
+                <p><i class="fas fa-undo"></i> Easy 7-day returns</p>
+                <p><i class="fas fa-shield-alt"></i> Secure checkout</p>
+            </div>
+        </div>
+    </div>
+
+    {% if related %}
+    <div class="related-section">
+        <h2>You May Also Like</h2>
+        <div class="products-grid">
+            {% for p in related %}
+            <div class="product-card">
+                <a href="{{ url_for('product_detail', product_id=p.id) }}" class="product-link">
+                    <div class="product-image">
+                        <img src="{{ p.image_url }}" alt="{{ p.name }}">
+                        <span class="product-category">{{ p.category }}</span>
+                    </div>
+                    <div class="product-info">
+                        <h3>{{ p.name }}</h3>
+                        <p class="product-description">{{ p.description }}</p>
+                        <div class="product-bottom">
+                            <span class="product-price">₹{{ "%.0f"|format(p.price) }}</span>
+                        </div>
+                    </div>
+                </a>
+                <div class="add-to-cart-form" style="padding:0 16px 16px">
+                    <input type="hidden" name="product_id" value="{{ p.id }}">
+                    <input type="number" value="1" min="1" class="qty-input">
+                    <button class="btn btn-cart add-btn" data-product-id="{{ p.id }}"><i class="fas fa-cart-plus"></i> Add</button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<style>
+.product-detail { padding: 20px 0; }
+.back-link { color: #D4AF37; text-decoration: none; display: inline-block; margin-bottom: 25px; font-size: 0.95rem; }
+.back-link:hover { text-decoration: underline; }
+.product-detail-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: start; }
+.product-detail-image img { width: 100%; border-radius: 16px; background: #1a1a1a; }
+.product-detail-info h1 { font-size: 2rem; color: #fff; margin-bottom: 10px; }
+.product-detail-price { font-size: 2rem; font-weight: 800; color: #D4AF37; margin-bottom: 15px; }
+.product-detail-desc { font-size: 1rem; color: #aaa; line-height: 1.6; margin-bottom: 25px; }
+.product-detail-actions { margin-bottom: 30px; }
+.product-detail-meta { border-top: 1px solid #222; padding-top: 20px; }
+.product-detail-meta p { color: #888; font-size: 0.9rem; margin-bottom: 10px; }
+.product-detail-meta p i { color: #D4AF37; width: 20px; margin-right: 8px; }
+.related-section { margin-top: 60px; }
+.related-section h2 { font-size: 1.5rem; color: #fff; margin-bottom: 25px; }
+
+@media (max-width: 768px) {
+    .product-detail-layout { grid-template-columns: 1fr; gap: 25px; }
+}
+</style>
+
+<script>
+function addToCart(productId, btn) {
+    const qty = btn.closest('.add-to-cart-form').querySelector('.qty-input').value;
+    fetch('{{ url_for("add_to_cart_ajax") }}', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        body: 'product_id=' + productId + '&quantity=' + qty
+    }).then(r => r.json()).then(data => {
+        if (data.success) {
+            const toast = document.createElement('div');
+            toast.className = 'toast-notification';
+            toast.innerHTML = '<i class="fas fa-check-circle"></i> Added to cart!';
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 2000);
+        }
+    });
+}
+
+document.querySelectorAll('.detail-add-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        addToCart(this.dataset.productId, this);
+    });
+});
+document.querySelectorAll('.add-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        addToCart(this.dataset.productId, this);
+    });
+});
+</script>
+{% endblock %}

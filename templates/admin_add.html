@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="auth-container">
+    <div class="auth-card" style="max-width:550px">
+        <div class="auth-header">
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="Dark Fashions" class="auth-logo" style="height:40px">
+            <h1>Add Product</h1>
+        </div>
+        <form method="POST" enctype="multipart/form-data" class="auth-form">
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" name="name" placeholder="Product name" required>
+            </div>
+            <div class="form-group">
+                <label>Description</label>
+                <textarea name="description" rows="3" placeholder="Product description" required></textarea>
+            </div>
+            <div class="form-group">
+                <label>Price (₹)</label>
+                <input type="number" name="price" placeholder="e.g. 2499" step="1" required>
+            </div>
+            <div class="form-group">
+                <label>Category</label>
+                <input type="text" name="category" placeholder="e.g. T-Shirts, Hoodies" required>
+            </div>
+            <div class="form-group">
+                <label>Product Image</label>
+                <input type="file" name="image" accept="image/*">
+            </div>
+            <button type="submit" class="btn btn-primary btn-block"><i class="fas fa-plus"></i> Add Product</button>
+            <a href="{{ url_for('admin') }}" class="btn btn-block" style="background:#222;color:#aaa;text-align:center;padding:12px;border-radius:8px;text-decoration:none;display:block;margin-top:10px">Cancel</a>
+        </form>
+    </div>
+</div>
+{% endblock %}
