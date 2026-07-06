@@ -1,12 +1,13 @@
 import os
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 from database import get_db, get_cursor, init_db, seed_products
+import secrets
 from werkzeug.security import generate_password_hash, check_password_hash
 import functools
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
-app.secret_key = 'dark-fashions-secret-key-change-in-production'
+app.secret_key = os.environ.get('SECRET_KEY', secrets.token_hex(32))
 
 def login_required(view):
     @functools.wraps(view)
