@@ -2,7 +2,7 @@ import os
 import psycopg2
 from psycopg2.extras import RealDictCursor
 
-DATABASE_URL = os.environ.get('DATABASE_URL', "postgresql://postgres:Rakshitharedddy%4028@db.buwkgovwcbrumamysbvu.supabase.co:5432/postgres?sslmode=require")
+DATABASE_URL = "postgresql://admin:O2SHdt8IKm5DG86T7O5gCCI5C2903AFN@dpg-d9691quq1p3s73bn8ilg-a/dark_fashions"
 
 def get_db():
     conn = psycopg2.connect(DATABASE_URL)
