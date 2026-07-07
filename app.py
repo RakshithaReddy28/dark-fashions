@@ -244,31 +244,34 @@ def checkout():
     total = sum(item['price'] * item['quantity'] for item in items)
 
     if request.method == 'POST':
-        address = request.form['address']
-        pincode = request.form['pincode']
-        payment_method = request.form.get('payment_method', 'UPI')
-        upi_txn_id = request.form.get('upi_txn_id', '')
+        try:
+            address = request.form['address']
+            pincode = request.form['pincode']
+            payment_method = request.form.get('payment_method', 'UPI')
+            upi_txn_id = request.form.get('upi_txn_id', '')
 
-        if not address:
+            if not address:
+                flash('Please enter your shipping address.', 'danger')
+                return render_template('checkout.html', items=items, total=total)
+
+            cur.execute("INSERT INTO orders (user_id, total_amount, shipping_address, pincode, payment_method, upi_txn_id) VALUES (%s, %s, %s, %s, %s, %s) RETURNING id",
+                        (session['user_id'], total, address, pincode, payment_method, upi_txn_id))
+            order_id = cur.fetchone()[0]
+
+            for item in items:
+                cur.execute("INSERT INTO order_items (order_id, product_id, quantity, price) VALUES (%s, %s, %s, %s)",
+                           (order_id, item['product_id'], item['quantity'], item['price']))
+
+            cur.execute("DELETE FROM cart WHERE user_id = %s", (session['user_id'],))
+            db.commit()
+            flash('Order placed successfully! Thank you for your purchase.', 'success')
+            return redirect(url_for('order_confirmation', order_id=order_id))
+        except Exception as e:
+            flash(f'Checkout error: {str(e)}', 'danger')
+            return render_template('checkout.html', items=items, total=total)
+        finally:
             cur.close()
             db.close()
-            flash('Please enter your shipping address.', 'danger')
-            return render_template('checkout.html', items=items, total=total)
-
-        cur.execute("INSERT INTO orders (user_id, total_amount, shipping_address, pincode, payment_method, upi_txn_id) VALUES (%s, %s, %s, %s, %s, %s) RETURNING id",
-                    (session['user_id'], total, address, pincode, payment_method, upi_txn_id))
-        order_id = cur.fetchone()[0]
-
-        for item in items:
-            cur.execute("INSERT INTO order_items (order_id, product_id, quantity, price) VALUES (%s, %s, %s, %s)",
-                       (order_id, item['product_id'], item['quantity'], item['price']))
-
-        cur.execute("DELETE FROM cart WHERE user_id = %s", (session['user_id'],))
-        db.commit()
-        cur.close()
-        db.close()
-        flash('Order placed successfully! Thank you for your purchase.', 'success')
-        return redirect(url_for('order_confirmation', order_id=order_id))
 
     cur.close()
     db.close()
