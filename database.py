@@ -66,10 +66,9 @@ def init_db():
 def seed_products():
     conn = psycopg2.connect(DATABASE_URL)
     cur = conn.cursor()
-    cur.execute("SELECT COUNT(*) as cnt FROM products")
-    count = cur.fetchone()[0]
-    if count == 0:
-        products = [
+    cur.execute("TRUNCATE TABLE products RESTART IDENTITY CASCADE")
+    conn.commit()
+    products = [
             ('Classic Black Tee', 'Premium cotton black t-shirt with signature logo', 2499, '/static/products/black_tee.jpg', 'T-Shirts'),
             ('Dark Hoodie', 'Oversized fleece hoodie with embroidered design', 4999, '/static/products/dark_hoodie.webp', 'Hoodies'),
             ('Slim Fit Jeans', 'Stretch denim jeans in obsidian black', 3999, '/static/products/slim_fit_jeans.jpg', 'Bottoms'),
@@ -96,9 +95,9 @@ def seed_products():
             ('Half Zip Sweater', 'Half zip fleece sweater in black', 3499, '/static/products/half_zip.webp', 'Sweaters'),
             ('Wide Leg Pants', 'Wide leg trouser pants in black', 3299, '/static/products/track_pants.jpg', 'Bottoms'),
         ]
-        for p in products:
-            cur.execute("INSERT INTO products (name, description, price, image_url, category) VALUES (%s, %s, %s, %s, %s)", p)
-        conn.commit()
+    for p in products:
+        cur.execute("INSERT INTO products (name, description, price, image_url, category) VALUES (%s, %s, %s, %s, %s)", p)
+    conn.commit()
     cur.close()
     conn.close()
 
