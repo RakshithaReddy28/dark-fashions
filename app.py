@@ -42,24 +42,28 @@ def register():
             flash('Password must be at least 6 characters.', 'danger')
             return render_template('register.html')
 
-        db = get_db()
-        cur = get_cursor(db)
-        cur.execute("SELECT id FROM users WHERE email = %s", (email,))
-        existing = cur.fetchone()
-        if existing:
+        try:
+            db = get_db()
+            cur = get_cursor(db)
+            cur.execute("SELECT id FROM users WHERE email = %s", (email,))
+            existing = cur.fetchone()
+            if existing:
+                cur.close()
+                db.close()
+                flash('Email already registered. Please log in.', 'warning')
+                return render_template('register.html')
+
+            hashed = generate_password_hash(password)
+            cur.execute("INSERT INTO users (full_name, email, password) VALUES (%s, %s, %s)",
+                        (full_name, email, hashed))
+            db.commit()
             cur.close()
             db.close()
-            flash('Email already registered. Please log in.', 'warning')
+            flash('Registration successful! Please log in.', 'success')
+            return redirect(url_for('login'))
+        except Exception as e:
+            flash(f'Database error: {str(e)}', 'danger')
             return render_template('register.html')
-
-        hashed = generate_password_hash(password)
-        cur.execute("INSERT INTO users (full_name, email, password) VALUES (%s, %s, %s)",
-                    (full_name, email, hashed))
-        db.commit()
-        cur.close()
-        db.close()
-        flash('Registration successful! Please log in.', 'success')
-        return redirect(url_for('login'))
 
     return render_template('register.html')
 
