@@ -434,7 +434,8 @@ def admin_delete(product_id):
     flash('Product deleted.', 'info')
     return redirect(url_for('admin'))
 
+init_db()
+seed_products()
+
 if __name__ == '__main__':
-    init_db()
-    seed_products()
     app.run(host='0.0.0.0', port=5000, debug=True)
