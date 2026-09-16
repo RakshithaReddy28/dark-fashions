@@ -441,8 +441,16 @@ def admin_delete(product_id):
     flash('Product deleted.', 'info')
     return redirect(url_for('admin'))
 
-init_db()
-seed_products()
+try:
+    init_db()
+    seed_products()
+except Exception as e:
+    import sys
+    print(f"WARNING: Database init failed at startup: {e}", file=sys.stderr)
+
+@app.route('/healthz')
+def healthz():
+    return {'status': 'ok'}
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
