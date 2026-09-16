@@ -8,9 +8,7 @@ from psycopg2.extras import RealDictCursor
 
 ON_RENDER = os.environ.get('RENDER', '').lower() == 'true'
 
-RENDER_DATABASE_URL = "postgresql://admin:O2SHdt8IKm5DG86T7O5gCCI5C2903AFN@dpg-d9691quq1p3s73bn8ilg-a/dark_fashions"
-
-DATABASE_URL = os.environ.get('DATABASE_URL') or (RENDER_DATABASE_URL if ON_RENDER else None)
+DATABASE_URL = os.environ.get('DATABASE_URL')
 
 ENGINE = 'postgres' if (DATABASE_URL or '').startswith('postgres') else 'sqlite'
 
