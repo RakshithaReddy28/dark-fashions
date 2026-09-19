@@ -15,7 +15,7 @@
             </div>
             <div class="confirmation-row">
                 <span>Date</span>
-                <span class="confirmation-value">{{ order.created_at[:10] }}</span>
+                <span class="confirmation-value">{{ (order.created_at|string)[:10] }}</span>
             </div>
             <div class="confirmation-row">
                 <span>Payment</span>

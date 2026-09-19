@@ -9,7 +9,7 @@
             <div class="order-header">
                 <div>
                     <span class="order-id">Order #{{ order.id }}</span>
-                    <span class="order-date">{{ order.created_at[:10] }}</span>
+                    <span class="order-date">{{ (order.created_at|string)[:10] }}</span>
                 </div>
                 <div>
                     <span class="order-status {{ order.status }}">{{ order.status|capitalize }}</span>
