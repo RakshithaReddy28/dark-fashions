@@ -23,7 +23,7 @@ Premium streetwear e-commerce platform built with Flask and PostgreSQL.
 
 ## Live Demo
 
-[https://dark-fashions.onrender.com](https://dark-fashions.onrender.com)
+[https://dark-fashions-1.onrender.com](https://dark-fashions-1.onrender.com)
 
 ## Admin Access
 
