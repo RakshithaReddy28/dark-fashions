@@ -256,7 +256,7 @@ def checkout():
 
             cur.execute("INSERT INTO orders (user_id, total_amount, shipping_address, pincode, payment_method, upi_txn_id) VALUES (%s, %s, %s, %s, %s, %s) RETURNING id",
                         (session['user_id'], total, address, pincode, payment_method, upi_txn_id))
-            order_id = cur.fetchone()[0]
+            order_id = cur.fetchone()['id']
 
             for item in items:
                 cur.execute("INSERT INTO order_items (order_id, product_id, quantity, price) VALUES (%s, %s, %s, %s)",
